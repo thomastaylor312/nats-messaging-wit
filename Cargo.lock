@@ -1308,6 +1308,7 @@ dependencies = [
 [[package]]
 name = "provider-sdk"
 version = "0.1.0"
+source = "git+https://github.com/thomastaylor312/provider-sdk.git?branch=main#ae292de71f18209e064ef2763b8a518b1c029688"
 dependencies = [
  "async-nats",
  "async-trait",
