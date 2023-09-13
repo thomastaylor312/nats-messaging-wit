@@ -5,17 +5,17 @@ use std::{collections::HashMap, sync::Arc, time::Duration};
 use async_trait::async_trait;
 use base64::Engine;
 use futures::StreamExt;
-use provider_sdk::{
-    core::{HostData, LinkDefinition},
-    error::{ProviderError, ProviderResult},
-    load_host_data, start_provider, Context, ProviderHandler,
-};
 use serde::{Deserialize, Serialize};
 use tokio::sync::{OwnedSemaphorePermit, RwLock, Semaphore};
 use tokio::task::JoinHandle;
 use tracing::{debug, error, instrument, warn};
 use tracing_futures::Instrument;
 use wascap::prelude::KeyPair;
+use wasmcloud_provider_sdk::{
+    core::{HostData, LinkDefinition},
+    error::{ProviderError, ProviderResult},
+    load_host_data, start_provider, Context, ProviderHandler,
+};
 
 mod messaging;
 
@@ -316,6 +316,7 @@ impl ProviderHandler for NatsMessagingProvider {
     /// If the link is allowed, return true, otherwise return false to deny the link.
     #[instrument(level = "debug", skip(self, ld), fields(actor_id = %ld.actor_id))]
     async fn put_link(&self, ld: &LinkDefinition) -> bool {
+        println!("vals: {:?}", ld.values);
         // If the link definition values are empty, use the default connection configuration
         let config = if ld.values.is_empty() {
             self.default_config.clone()
@@ -462,7 +463,7 @@ impl Consumer for NatsMessagingProvider {
 #[cfg(test)]
 mod test {
     use crate::{generate_provider, ConnectionConfig, NatsMessagingProvider};
-    use provider_sdk::{
+    use wasmcloud_provider_sdk::{
         core::{HostData, LinkDefinition},
         ProviderHandler,
     };

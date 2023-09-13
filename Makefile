@@ -1,7 +1,7 @@
 # capability-provider/nats/Makefile
 
 PROJECT = nats_messaging
-CAPABILITY_ID = wasmcloud:messaging
+CAPABILITY_ID = wasmcloud:messaging2
 VENDOR   = "wasmcloud"
 NAME = "NATS Messaging"
 VERSION  = $(shell cargo metadata --no-deps --format-version 1 | jq -r '.packages[] .version' | head -1)

@@ -25,7 +25,8 @@ tracing = "0.1"
 tracing-futures = "0.2"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 wascap = "0.10"
-provider-sdk = { git = "https://github.com/thomastaylor312/provider-sdk.git", branch = "main", features = [ "otel" ] }
+# provider-sdk = { git = "https://github.com/thomastaylor312/provider-sdk.git", branch = "main", features = [ "otel" ] }
+wasmcloud-provider-sdk = { path = "../wasmcloud/crates/provider-sdk", features = [ "otel" ] }
 
 [[bin]]
 name = "nats_messaging"
